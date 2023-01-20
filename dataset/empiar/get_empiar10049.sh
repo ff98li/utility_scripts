@@ -9,7 +9,7 @@ echo
 echo
 echo "======================================================"
 
-DATA_DIR=~/scratch/data ## change to your data directory
+DATA_DIR=~/scratch/data/cryoem
 
 if [ ! -d "${DATA_DIR}/empiar10049" ]; then
     mkdir -p $DATA_DIR/empiar10049
@@ -23,14 +23,9 @@ wget --show-progress https://github.com/zhonge/cryodrgn_empiar/blob/main/empiar1
 wget --show-progress https://github.com/zhonge/cryodrgn_empiar/blob/main/empiar10049/inputs/poses.pkl?raw=true \
     -O $DATA_DIR/empiar10049/poses.pkl
 echo "================= Downloading raw mrc ================"
-wget --show-progress -m -q -nd ftp://ftp.ebi.ac.uk/empiar/world_availability/10049/data/allimg.star \
-    -P $DATA_DIR/empiar10049
-
-wget --show-progress -r --no-parent -m -q -nd ftp://ftp.ebi.ac.uk/empiar/world_availability/10049/data/RAG_1st/ \
-    -P $DATA_DIR/empiar10049/RAG_1st
-
-wget --show-progress -r --no-parent -m -q -nd ftp://ftp.ebi.ac.uk/empiar/world_availability/10049/data/RAG_2nd/ \
-    -P $DATA_DIR/empiar10049/RAG_2nd
+wget --show-progress -r -x -nH --cut-dirs=3 --no-parent \
+    ftp://ftp.ebi.ac.uk/empiar/world_availability/10049/data/ \
+    -P $DATA_DIR/empiar10049/
 
 echo
 # ---------------------------------------------------------------------
