@@ -131,7 +131,9 @@ set_user ()
 	fi
 	while [[ $LOGIN_NAME == "" ]]
 	do
-		echoerror "  Login username is empty, please input again... "
+	    echoerror "  Login username is empty, please input again... "
+	    read -p "  Set a username for CryoSparc web: " LOGIN_NAME
+	    printf "\n"
 	done
 
 	PASSWORD1='114'
