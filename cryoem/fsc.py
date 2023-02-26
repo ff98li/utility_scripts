@@ -57,6 +57,7 @@ def main(args):
         prev_mask = mask
     fsc = np.asarray(fsc)
     x = np.arange(D // 2) / D
+    fsc_freq = x / Apix
 
     res = np.stack((x, fsc), 1)
     if args.o:
@@ -74,7 +75,7 @@ def main(args):
 
     if args.plot:
         fig = plt.figure()
-        plt.plot(x, fsc, clip_on = False)
+        plt.plot(fsc_freq, fsc, clip_on = False)
         plt.ylim((0, 1))
         plt.xlabel('Resolution (1/$\mathrm{\AA}$)')
         plt.ylabel("Fourier Shell Correlation")
